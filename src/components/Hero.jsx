@@ -17,7 +17,7 @@ function Hero() {
           </div>
 
           <h1 className="hero-title">
-            <span className="title-main">Conduitx402</span>
+            <span className="title-main">Conduit<br />X402</span>
           </h1>
         </div>
 
