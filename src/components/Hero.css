@@ -1,0 +1,508 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rem 0 6rem;
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.1) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.1) 75%);
+  background-size: 60px 60px;
+  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+  opacity: 0.3;
+}
+
+.floor-3d {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.8) 0%, transparent 100%);
+  transform: perspective(1000px) rotateX(75deg);
+  transform-origin: bottom;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.floor-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-size: 100px 100px;
+  transform: perspective(1000px) rotateX(75deg);
+  transform-origin: bottom;
+}
+
+.hero-container {
+  max-width: 100%;
+  width: 100%;
+  padding: 0 6rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* 
+ * .hero-content: 메인 페이지 왼쪽 텍스트 영역 컨테이너
+ * - flex 컬럼 레이아웃으로 배지와 제목을 세로로 배치
+ * - gap으로 요소 간 간격 설정 (2.5rem)
+ */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.badge-text {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-weight: 500;
+  color: rgba(181, 84, 84, 0.9);
+  letter-spacing: 0.05em;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.title-main {
+  font-family: 'Shortages', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #b55454 0%, #c86a6a 50%, #b55454 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(181, 84, 84, 0.3);
+  animation: goldShimmer 3s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-bottom-text {
+  position: absolute;
+  bottom: 4rem;
+  left: 6rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+}
+
+.title-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.feature-card {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.9));
+  border: 1px solid rgba(181, 84, 84, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: default;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(181, 84, 84, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(181, 84, 84, 0.4);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(181, 84, 84, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover .card-shine {
+  opacity: 1;
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #b55454;
+  background: linear-gradient(135deg, rgba(181, 84, 84, 0.1), rgba(181, 84, 84, 0.1));
+  border: 1px solid rgba(181, 84, 84, 0.2);
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 4px 20px rgba(181, 84, 84, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover .feature-icon {
+  color: #c86a6a;
+  border-color: rgba(181, 84, 84, 0.4);
+  box-shadow: 
+    0 8px 30px rgba(181, 84, 84, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.feature-title {
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  font-family: 'Georgia', serif;
+}
+
+.feature-text {
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* 
+ * .hero-visual: 메인 페이지 오른쪽 비주얼 영역 컨테이너
+ * - 로고 레이어들과 빛 효과를 담는 영역
+ * - 고정 높이 600px로 설정
+ * - perspective로 3D 효과를 위한 원근감 설정
+ * - flex로 내부 요소들을 중앙 정렬
+ */
+.hero-visual {
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 수평 정렬: flex-start | flex-end | center | space-between | space-around | space-evenly */
+  perspective: 1000px;
+}
+
+.visual-light-source {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(181, 84, 84, 0.4), rgba(181, 84, 84, 0.1), transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+  animation: lightPulse 4s ease-in-out infinite;
+}
+
+@keyframes lightPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+/* 
+ * .visual-logo-container: 3개의 로고 레이어를 담는 컨테이너
+ * - 400px × 400px 고정 크기
+ * - position: relative로 내부 절대 위치 요소들의 기준점 역할
+ * - align-items: center - 수직 중앙 정렬 (교차축 정렬)
+ *   * 다른 옵션들:
+ *     - flex-start: 상단 정렬
+ *     - flex-end: 하단 정렬
+ *     - center: 중앙 정렬 (현재)
+ *     - baseline: 베이스라인 정렬
+ *     - stretch: 늘려서 채움
+ * - justify-content: center - 수평 중앙 정렬 (주축 정렬)
+ * - z-index: 2로 다른 요소들 위에 표시
+ */
+.visual-logo-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center; /* 수직 정렬: flex-start | flex-end | center | baseline | stretch */
+  justify-content: center; /* 수평 정렬: flex-start | flex-end | center | space-between | space-around | space-evenly */
+  z-index: 2;
+  transform: translateX(-100px); /* 전체를 왼쪽으로 이동 (음수값: 왼쪽, 양수값: 오른쪽) */
+}
+
+.logo-layer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 40px rgba(181, 84, 84, 0.5));
+}
+
+.logo-1 {
+  width: 400px;
+  height: 400px;
+  left: -0px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  opacity: 1;
+  animation: float1 4s ease-in-out infinite;
+}
+
+.logo-2 {
+  width: 267px;
+  height: 267px;
+  left: 20%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0.95;
+  animation: float2 5s ease-in-out infinite;
+}
+
+.logo-3 {
+  width: 133px;
+  height: 133px;
+  left: -20%;
+  top: 65%;
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: 0.7;
+  animation: float3 6s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% {
+    transform: translate(0, -50%);
+  }
+  33% {
+    transform: translate(1px, calc(-50% - 8px));
+  }
+  66% {
+    transform: translate(-1px, calc(-50% - 4px));
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+  }
+  33% {
+    transform: translate(calc(-50% - 1.5px), calc(-50% - 10px));
+  }
+  66% {
+    transform: translate(calc(-50% + 1.5px), calc(-50% - 5px));
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translate(0, -50%);
+  }
+  33% {
+    transform: translate(-2px, calc(-50% - 12px));
+  }
+  66% {
+    transform: translate(2px, calc(-50% - 6px));
+  }
+}
+
+.visual-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+}
+
+.logo-reflection {
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(181, 84, 84, 0.2), transparent);
+  transform: perspective(1000px) rotateX(75deg) scaleY(0.5);
+  transform-origin: top;
+  filter: blur(20px);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.visual-glow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(181, 84, 84, 0.15), transparent 70%);
+  filter: blur(100px);
+  z-index: 0;
+  animation: glowMove 6s ease-in-out infinite;
+}
+
+@keyframes glowMove {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50%) translateX(-50px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 0 4rem;
+  }
+  
+  .hero-visual {
+    height: 400px;
+    order: -1;
+  }
+  
+  .visual-logo-container {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .hero-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 8rem 0 4rem;
+  }
+  
+  .hero-container {
+    padding: 0 2rem;
+  }
+  
+  .hero-bottom-text {
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    max-width: 100%;
+  }
+  
+  .hero-visual {
+    height: 300px;
+  }
+  
+  .visual-logo-container {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .visual-light-source {
+    width: 200px;
+    height: 200px;
+  }
+}

@@ -1,0 +1,343 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.loader-floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(181, 84, 84, 0.03), transparent);
+  transform: perspective(1000px) rotateX(60deg);
+  transform-origin: bottom;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.loader-logo-stack {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-reveal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.logo-reveal.revealed {
+  transform: scale(1) translateY(0);
+}
+
+.logo-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(181, 84, 84, 0.4));
+}
+
+.loader-logo-1 {
+  width: 133px;
+  height: 133px;
+  z-index: 1;
+  opacity: 0.5;
+  filter: blur(10px);
+  transition-delay: 0s;
+}
+
+.loader-logo-1.revealed {
+  opacity: 0.5;
+  filter: blur(4px);
+  animation: loaderFloat1 4s ease-in-out infinite;
+}
+
+.loader-logo-1 img {
+  filter: drop-shadow(0 0 30px rgba(181, 84, 84, 0.4));
+}
+
+.loader-logo-2 {
+  width: 267px;
+  height: 267px;
+  z-index: 2;
+  opacity: 0.75;
+  filter: blur(10px);
+  transition-delay: 0.1s;
+}
+
+.loader-logo-2.revealed {
+  opacity: 0.75;
+  filter: blur(2px);
+  animation: loaderFloat2 5s ease-in-out infinite;
+}
+
+.loader-logo-2 img {
+  filter: drop-shadow(0 0 30px rgba(181, 84, 84, 0.4));
+}
+
+.loader-logo-3 {
+  width: 400px;
+  height: 400px;
+  z-index: 3;
+  opacity: 1;
+  filter: blur(10px);
+  transition-delay: 0.2s;
+}
+
+.loader-logo-3.revealed {
+  opacity: 1;
+  filter: blur(0);
+  animation: loaderFloat3 6s ease-in-out infinite;
+}
+
+.loader-logo-3 img {
+  filter: drop-shadow(0 0 30px rgba(181, 84, 84, 0.4));
+}
+
+@keyframes loaderFloat1 {
+  0%, 100% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+  33% {
+    transform: scale(1) translateY(-8px) translateX(5px);
+  }
+  66% {
+    transform: scale(1) translateY(-4px) translateX(-5px);
+  }
+}
+
+@keyframes loaderFloat2 {
+  0%, 100% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+  33% {
+    transform: scale(1) translateY(-10px) translateX(-8px);
+  }
+  66% {
+    transform: scale(1) translateY(-5px) translateX(8px);
+  }
+}
+
+@keyframes loaderFloat3 {
+  0%, 100% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+  33% {
+    transform: scale(1) translateY(-12px) translateX(-10px);
+  }
+  66% {
+    transform: scale(1) translateY(-6px) translateX(10px);
+  }
+}
+
+.loader-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.loader-brand {
+  font-family: 'Shortages', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #b55454 0%, #c86a6a 50%, #b55454 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 2s ease-in-out infinite;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: brandAppear 1s ease-out 0.5s forwards, goldShimmer 2s ease-in-out 1.5s infinite;
+}
+
+@keyframes brandAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.loader-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.progress-line-wrapper {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background: linear-gradient(90deg, #b55454, #c86a6a, #b55454);
+  background-size: 200% 100%;
+  box-shadow: 0 0 20px rgba(181, 84, 84, 0.6);
+  animation: lineShimmer 1.5s ease-in-out infinite;
+  transition: width 0.3s ease-out;
+}
+
+@keyframes lineShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.progress-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #b55454;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(181, 84, 84, 0.8);
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.3);
+    opacity: 0.8;
+  }
+}
+
+.progress-number {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 300;
+  color: #b55454;
+  text-shadow: 0 0 20px rgba(181, 84, 84, 0.5);
+  letter-spacing: -0.02em;
+  min-width: 60px;
+  text-align: right;
+  opacity: 0;
+  animation: numberAppear 0.5s ease-out 1s forwards;
+}
+
+@keyframes numberAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.loader-light {
+  position: absolute;
+  right: 10%;
+  top: 20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(181, 84, 84, 0.15), transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: lightMove 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes lightMove {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(30px, 30px) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.loader-exit {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (max-width: 768px) {
+  .loader-logo-stack {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .logo-1 {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .logo-2 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .logo-3 {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .loader-progress-container {
+    max-width: 350px;
+    gap: 1rem;
+  }
+}

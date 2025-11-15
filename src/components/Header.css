@@ -1,0 +1,138 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 2rem 6rem;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.85));
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(181, 84, 84, 0.2);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  width: 100%;
+}
+
+.header-container {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(181, 84, 84, 0.3));
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logo-image {
+  filter: drop-shadow(0 0 20px rgba(181, 84, 84, 0.6));
+  transform: scale(1.05);
+}
+
+.logo-ticker {
+  font-family: 'Shortages', sans-serif;
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  font-weight: 500;
+  color: rgba(181, 84, 84, 0.8);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #b55454, #c86a6a);
+  box-shadow: 0 0 10px rgba(181, 84, 84, 0.5);
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-link:hover {
+  color: #b55454;
+  text-shadow: 0 0 10px rgba(181, 84, 84, 0.5);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link-disabled {
+  color: rgba(128, 128, 128, 0.6) !important;
+  cursor: not-allowed !important;
+}
+
+.nav-link-disabled:hover {
+  color: rgba(128, 128, 128, 0.6) !important;
+  text-shadow: none !important;
+}
+
+.nav-link-disabled:hover::after {
+  width: 0 !important;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    padding: 2rem 4rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 1.75rem 3rem;
+  }
+  
+  .nav {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1.5rem 2rem;
+  }
+  
+  .nav {
+    gap: 2rem;
+  }
+  
+  .logo-ticker {
+    display: none;
+  }
+  
+  .logo-image {
+    height: 32px;
+  }
+}
