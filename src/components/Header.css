@@ -103,6 +103,28 @@
   width: 0 !important;
 }
 
+.nav-link-buy {
+  background: linear-gradient(135deg, #b55454, #c86a6a);
+  color: #ffffff !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(181, 84, 84, 0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-link-buy:hover {
+  background: linear-gradient(135deg, #c86a6a, #b55454);
+  box-shadow: 0 6px 20px rgba(181, 84, 84, 0.5);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+.nav-link-buy::after {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .header {
     padding: 2rem 4rem;
